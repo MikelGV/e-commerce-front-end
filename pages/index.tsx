@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from "next/link"
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -8,18 +9,26 @@ export default function Home() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link"href="/">Home</a>
+            <Link href="/">
+              <a className="nav-link">Home</a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/cart">Cart</a>
+            <Link href="/cart">
+              <a className="nav-link">Cart</a>
+            </Link>
           </li>
         </ul>
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
           <li className="nav-item active">
-            <a className="nav-link" href="/login">Login</a>
+            <Link href="/login">
+              <a className="nav-link">Login</a>
+            </Link>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="/signup">Signup</a>
+            <Link href="/signup">
+              <a className="nav-link">Signup</a>
+            </Link>
           </li>
         </ul>
       </nav>

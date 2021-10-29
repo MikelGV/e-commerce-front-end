@@ -9,13 +9,19 @@ export default function Home() {
         <title>E-shop</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className={styles.nav}>
-        <h1><a href="/">home</a></h1>
-        <ul>
-          <li><a href="/login">Login</a></li>
-          <ul><a href="/signup">Signup</a></ul>
-          <ul><a href="/cart">Cart</a></ul>
-        </ul>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="collapse navbar-collapse">
+          <h1 className="nav-item active">
+            <a className="nav-link"href="/">home</a></h1>
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="/login">Login</a></li>
+            <ul className="nav-item active">
+              <a className="nav-link" href="/signup">Signup</a></ul>
+            <ul className="nav-item">
+              <a className="nav-link" href="/cart">Cart</a></ul>
+          </ul>
+        </div>
       </nav>
 
       <main className={styles.main}>

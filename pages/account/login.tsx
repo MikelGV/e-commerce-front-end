@@ -6,5 +6,13 @@ import {Layout} from "../../components/account/layout";
 
 export default function Login() {
     const router = useRouter();
-
+    return(
+        <Layout>
+            <div className="card">
+                <div className="">
+                    <form action=""></form>
+                </div>
+            </div>
+        </Layout>
+    )
 }

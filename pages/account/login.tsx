@@ -17,6 +17,11 @@ export default function Login() {
                             <input type="text" name="email" className={`form-control`}/>
                             <div className="invalid-feedback"></div>
                         </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" className={`form-control`} />
+                            <div className="invalid-feedback"></div>
+                        </div>
                     </form>
                 </div>
             </div>

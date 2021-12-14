@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.header {
+  position: absolute;
+  width: 1920px;
+  height: 76px;
+  left: 0px;
+  top: 0px;
+
+  background: #0F1111;
+}
+.headerbutton {
+  position: absolute;
+  width: 174px;
+  height: 76px;
+  left: 4px;
+  top: 0px;
+
+  font-family: Rufina;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+.Search {
+  position: absolute;
+  resize: none;
+  width: 912px;
+  height: 50px;
+  left: 521px;
+  top: 13px;
+
+  background: #FFFFFF;
+}
+
+.SearchButton {
+  position: absolute;
+  width: 70px;
+  height: 50px;
+  left: 1433px;
+  top: 13px;
+
+  background: #EAA449;
+}
+
+.cart {
+  position: absolute;
+  width: 143px;
+  height: 50px;
+  left: 1556px;
+  top: 13px;
+
+  font-family: Rufina;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.signUp {
+  position: absolute;
+  width: 148px;
+  height: 50px;
+  left: 1752px;
+  top: 13px;
+
+  font-family: Rufina;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}

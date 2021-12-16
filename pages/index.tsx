@@ -10,6 +10,7 @@ export default function Home() {
         <Link href={'/'}>
           <a className={styles.headerbutton}>Button</a>
         </Link>
+        <div className='dropdwon'></div>
         <div>
           <textarea className={styles.Search}></textarea>
           <button className={styles.SearchButton}></button>

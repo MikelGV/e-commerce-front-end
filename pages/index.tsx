@@ -15,13 +15,13 @@ export default function Home() {
           <textarea className={styles.Search}></textarea>
           <button className={styles.SearchButton}></button>
         </div>
-        <div>
+        <div className={styles.cartDiv}>
           <Link href={'/cart'}>
             <a className={styles.cart}>Cart</a>
           </Link>
         </div>
 
-        <div>
+        <div className={styles.signUpDiv}>
           <Link href={'/login'}>
             <a className={styles.signUp}>Sign Up</a>
           </Link>

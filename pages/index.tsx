@@ -16,13 +16,13 @@ export default function Home() {
           <button className={styles.SearchButton}></button>
         </div>
         <div className={styles.cartDiv}>
-          <Link href={'/cart'}>
+          <Link href='/account/cart'>
             <a className={styles.cart}>Cart</a>
           </Link>
         </div>
 
         <div className={styles.signUpDiv}>
-          <Link href={'/login'}>
+          <Link href='/account/login'>
             <a className={styles.signUp}>Sign Up</a>
           </Link>
         </div>

@@ -15,14 +15,14 @@ export default function Home() {
           <textarea className={styles.Search}></textarea>
           <button className={styles.SearchButton}></button>
         </div>
-        <div>
-          <Link href={'/cart'}>
+        <div className={styles.cartDiv}>
+          <Link href='/account/cart'>
             <a className={styles.cart}>Cart</a>
           </Link>
         </div>
 
-        <div>
-          <Link href={'/login'}>
+        <div className={styles.signUpDiv}>
+          <Link href='/account/login'>
             <a className={styles.signUp}>Sign Up</a>
           </Link>
         </div>

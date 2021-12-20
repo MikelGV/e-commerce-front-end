@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.scss'
 export default function Home() {
   return (
     <div className={styles.main}>
+      {/* Header */}
       <div className={styles.header}>
         <Link href={'/'}>
           <a className={styles.headerbutton}>Button</a>
@@ -26,6 +27,11 @@ export default function Home() {
             <a className={styles.signUp}>Sign Up</a>
           </Link>
         </div>
+        {/* Body-Objects */}
+
+        {/* Footer */}
+
+        <div className={styles.footer}></div>
 
       </div>
     </div>

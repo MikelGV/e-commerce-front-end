@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from "next/link"
 import styles from '../styles/Home.module.scss'
+import Search from '@material-ui/icons/Search'
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
         <div className='dropdwon'></div>
         <div>
           <textarea className={styles.Search}></textarea>
-          <button className={styles.SearchButton}></button>
+          <button className={styles.SearchButton}><Search></Search></button>
         </div>
         <div className={styles.cartDiv}>
           <Link href='/account/cart'>

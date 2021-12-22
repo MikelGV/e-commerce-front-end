@@ -136,3 +136,22 @@
   border: 1px solid #FFFFFF;
   box-sizing: border-box;
 }
+
+.menuButton {
+  position: absolute;
+  width: 200px;
+  height: 35px;
+  left: 320px;
+  top: 13px;
+
+  font-family: Rufina;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}

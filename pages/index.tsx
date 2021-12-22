@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from "next/link"
 import styles from '../styles/Home.module.scss'
 import Search from '@material-ui/icons/Search'
+import { Menu, Transition } from '@headlessui/react'
 
 export default function Home() {
   return (
@@ -12,7 +13,16 @@ export default function Home() {
         <Link href={'/'}>
           <a className={styles.headerbutton}>Button</a>
         </Link>
-        <div className='dropdwon'></div>
+        {/* DropDown */}
+        <div>
+          <Menu as="div">
+            <div>
+              <Menu.Button className={styles.menuButton}>
+                All the departments
+              </Menu.Button>
+            </div>
+          </Menu>
+        </div>
         <div>
           <textarea className={styles.Search}></textarea>
           <button className={styles.SearchButton}><Search></Search></button>

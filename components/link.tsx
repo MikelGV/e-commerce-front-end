@@ -1,11 +1,10 @@
-import NextLink from "next/link";
+import Link from "next/link";
 
-export function Link({href, children, ...props}) {
+export function MyLink(props) {
+    let{ href, children, ...rest} = props
     return(
-        <NextLink href={href}>
-            <a {...props}>
-                {children}
-            </a>
-        </NextLink>
+        <Link href={href}>
+            <a {...rest}>{children}</a>
+        </Link>
     );
 };

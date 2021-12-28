@@ -29,13 +29,13 @@ export default function Home() {
           <button className={styles.SearchButton}><Search></Search></button>
         </div>
         <div className={styles.cartDiv}>
-          <Link href='/account/cart'>
+          <Link href='/cart'>
             <a className={styles.cart}>Cart</a>
           </Link>
         </div>
 
         <div className={styles.signUpDiv}>
-          <Link href='/account/login'>
+          <Link href='/login'>
             <a className={styles.signUp}>Sign Up</a>
           </Link>
         </div>

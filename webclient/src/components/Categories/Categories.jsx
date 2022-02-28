@@ -1,8 +1,21 @@
 import React from 'react'
+import styled from 'styled-components';
+import { categories } from '../../data';
+import { CategoryItem } from './CategoryItem';
+
+const Container = styled.div`
+  display: felx;
+  padding: 20px;
+  justify-content: space-between;
+`;
 
 const Categories = () => {
   return (
-    <div>Categories</div>
+    <Container>
+      {categories.map(item => (
+        <CategoryItem item={item}/>
+      ))}
+    </Container>
   )
 }
 

@@ -11,7 +11,7 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-const Tittle = styled.h1`
+const Title = styled.h1`
     font-size: 70px;
     margin-bottom: 20px;
 
@@ -49,7 +49,7 @@ const Button = styled.button`
 const Newsletter = () => {
   return (
     <Container>
-        <Tittle>Newsletter</Tittle>
+        <Title>Newsletter</Title>
         <Description>Get timely updates from your favorite products.</Description>
         <InputContainer>
             <Input placeholder='Your email' />

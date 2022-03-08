@@ -1,10 +1,12 @@
 import { Add, Remove } from '@mui/icons-material';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import Announcement from '../../components/Announcement/Announcement';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/navbar/navbar';
 import Newsletter from '../../components/Newsletter/Newsletter';
+import { publicRequest } from '../../requestMethods';
 import { mobile } from '../../responsive';
 
 const Container = styled.div``;
@@ -128,52 +130,67 @@ const Button = styled.button`
 
 
 const Product = () => {
-  return (
-    <Container>
-        <Navbar/>
-        <Announcement/>
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
 
-        <Wrapper>
-            <ImageContainer>
-                <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
-            </ImageContainer>
-            <InfoContainer>
-                <Title>Denim Jumpsuit</Title>
-                <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere illo veniam, iste reiciendis cupiditate blanditiis possimus dolorem sed quo similique iusto, cum tenetur ut, inventore aspernatur molestiae placeat quasi ea.</Desc>
-                <Price>$ 20</Price>
-                <FilterContainer>
-                    <Filter>
-                        <FilterTitle>Color</FilterTitle>
-                        <FilterColor color="black" />
-                        <FilterColor color="darkblue"/>
-                        <FilterColor color="gray"/>
-                    </Filter>
-                    <Filter>
-                        <FilterTitle>Size</FilterTitle>
-                        <FilterSize>
-                            <FilterSizeOption>XS</FilterSizeOption>
-                            <FilterSizeOption>S</FilterSizeOption>
-                            <FilterSizeOption>M</FilterSizeOption>
-                            <FilterSizeOption>L</FilterSizeOption>
-                            <FilterSizeOption>XL</FilterSizeOption>
-                        </FilterSize>
-                    </Filter>
-                </FilterContainer>
-                <AddContainer>
-                    <AmountContainer>
-                        <Remove/>
-                        <Amount>1</Amount>
-                        <Add/>
-                        <Button>ADD TO CART</Button>
-                    </AmountContainer>
-                </AddContainer>
-            </InfoContainer>
-        </Wrapper>
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get("/products/find/" +id)
+                setProduct(res.data);
+            } catch {
+                
+            }
+        }
+        getProduct();
+    })
+    return (
+        <Container>
+            <Navbar/>
+            <Announcement/>
 
-        <Newsletter/>
-        <Footer/>
-    </Container>
-  )
+            <Wrapper>
+                <ImageContainer>
+                    <Image src={product.img} />
+                </ImageContainer>
+                <InfoContainer>
+                    <Title>Denim Jumpsuit</Title>
+                    <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere illo veniam, iste reiciendis cupiditate blanditiis possimus dolorem sed quo similique iusto, cum tenetur ut, inventore aspernatur molestiae placeat quasi ea.</Desc>
+                    <Price>$ 20</Price>
+                    <FilterContainer>
+                        <Filter>
+                            <FilterTitle>Color</FilterTitle>
+                            <FilterColor color="black" />
+                            <FilterColor color="darkblue"/>
+                            <FilterColor color="gray"/>
+                        </Filter>
+                        <Filter>
+                            <FilterTitle>Size</FilterTitle>
+                            <FilterSize>
+                                <FilterSizeOption>XS</FilterSizeOption>
+                                <FilterSizeOption>S</FilterSizeOption>
+                                <FilterSizeOption>M</FilterSizeOption>
+                                <FilterSizeOption>L</FilterSizeOption>
+                                <FilterSizeOption>XL</FilterSizeOption>
+                            </FilterSize>
+                        </Filter>
+                    </FilterContainer>
+                    <AddContainer>
+                        <AmountContainer>
+                            <Remove/>
+                            <Amount>1</Amount>
+                            <Add/>
+                            <Button>ADD TO CART</Button>
+                        </AmountContainer>
+                    </AddContainer>
+                </InfoContainer>
+            </Wrapper>
+
+            <Newsletter/>
+            <Footer/>
+        </Container>
+    )
 }
 
 export default Product

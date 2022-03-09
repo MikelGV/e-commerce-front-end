@@ -1,10 +1,16 @@
 import { Add, Remove } from '@mui/icons-material';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 import Announcement from '../../components/Announcement/Announcement';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/navbar/navbar';
 import { mobile } from '../../responsive';
+import StripeCheckout from "react-stripe-checkout";
+import { userRequest } from '../../requestMethods';
+import { useNavigate } from 'react-router-dom';
+
+const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -87,7 +93,7 @@ const ProductColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${(props)=>props.color}
+  background-color: ${(props)=>props.color};
 `;
 
 const ProductSize = styled.span``;
@@ -162,6 +168,30 @@ const Button = styled.button`
 
 
 const Cart = () => {
+  const cart = useSelector(state=>state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate  = useNavigate();
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/demopayment", {
+          tokenId:stripeToken.id,
+          amount: cart.total * 100,
+        });
+        navigate("/success", {
+          stripeData: res.data,
+          products: cart
+        });
+      } catch {
+        
+      }
+    }
+    stripeToken && makeRequest();
+  }, [stripeToken, cart.total, navigate]);
   return (
     <Container>
       <Announcement/>
@@ -178,51 +208,34 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.pexels.com/photos/4271579/pexels-photo-4271579.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
-                <Details>
-                  <ProductName><b>Product:</b>CONVERSE SHOES</ProductName>
-                  <ProductId><b>ID:</b>93813718293</ProductId>
-                  <ProductColor color='black' />
-                  <ProductSize><b>Size:</b>46</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmontContainer>
-                  <Add/>
-                  <ProductAmount>2</ProductAmount>
-                  <Remove/>
-                </ProductAmontContainer>
-                <ProductPrice>$30</ProductPrice>
-              </PriceDetail>
-            </Product>
+            { cart.products.map(product=>(
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img}/>
+                  <Details>
+                    <ProductName><b>Product:</b>{product.title}</ProductName>
+                    <ProductId><b>ID:</b>{product._id}</ProductId>
+                    <ProductColor color={product.color} />
+                    <ProductSize><b>Size:</b>{product.size}</ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmontContainer>
+                    <Add/>
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove/>
+                  </ProductAmontContainer>
+                  <ProductPrice>$ {product.price*product.quantity}</ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
             <Hr/>
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.pexels.com/photos/1456705/pexels-photo-1456705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
-                <Details>
-                  <ProductName><b>Product:</b>NIKE SHOES</ProductName>
-                  <ProductId><b>ID:</b>93813718293</ProductId>
-                  <ProductColor color='black' />
-                  <ProductSize><b>Size:</b>46</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmontContainer>
-                  <Add/>
-                  <ProductAmount>2</ProductAmount>
-                  <Remove/>
-                </ProductAmontContainer>
-                <ProductPrice>$30</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$60</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -234,15 +247,26 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$60</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <StripeCheckout
+              name="E-Shop"
+              image="https://images.pexels.com/photos/1111371/pexels-photo-1111371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
       <Footer/>
     </Container>
   )
-}
+};
 
 export default Cart

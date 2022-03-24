@@ -90,7 +90,9 @@ const Navbar = () => {
         </Center>
         <Right>
           <MenuItme>Sign Up</MenuItme>
-          <MenuItme>Log In</MenuItme>
+          <Link to="/login" style={{textDecoration:"none", color: "black"}}>
+            <MenuItme>Log In</MenuItme>
+          </Link>
           <Link to="/cart">
             <MenuItme>
             <Badge badgeContent={quantity} color="primary">

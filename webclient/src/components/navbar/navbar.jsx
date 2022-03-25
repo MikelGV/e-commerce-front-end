@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import {Search, ShoppingCartOutlined} from '@mui/icons-material'
 import { Badge } from '@mui/material'
 import {mobile} from "../../responsive";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
+import { logout } from '../../redux/userRedux';
 
 const Container = styled.div`
   height: 60px;
@@ -72,9 +73,24 @@ const MenuItme = styled.div`
 
 `;
 
+const Button = styled.button`
+  font-size: 17px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 25px;
+  ${mobile({fontSize: "12px", marginLeft: "10px"})}
+`;
+
 
 const Navbar = () => {
-  const quantity = useSelector(state => state.cart.quantity)
+  const quantity = useSelector(state => state.cart.quantity);
+  const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    logout();
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -89,17 +105,25 @@ const Navbar = () => {
           <Logo>E-Shop.</Logo>
         </Center>
         <Right>
-          <MenuItme>Sign Up</MenuItme>
-          <Link to="/login" style={{textDecoration:"none", color: "black"}}>
-            <MenuItme>Log In</MenuItme>
-          </Link>
-          <Link to="/cart">
-            <MenuItme>
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined/>
-            </Badge>
-            </MenuItme>
-          </Link>
+          { user && (
+            <>
+              <Button onClick={handleClick}>Log out</Button>
+              <Link to="/cart">
+                <MenuItme>
+                <Badge badgeContent={quantity} color="primary">
+                  <ShoppingCartOutlined/>
+                </Badge>
+                </MenuItme>
+              </Link>
+            </>
+          )} {!user && (
+            <>
+              <MenuItme>Sign Up</MenuItme>
+              <Link to="/login" style={{textDecoration:"none", color: "black"}}>
+                <MenuItme>Log In</MenuItme>
+              </Link>
+            </>
+          )}
         </Right>
       </Wrapper>  
     </Container>

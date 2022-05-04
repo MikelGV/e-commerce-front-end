@@ -6,6 +6,7 @@ import {mobile} from "../../responsive";
 import {useDispatch, useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
 import { logout } from '../../redux/userRedux';
+import { userLogout } from '../../redux/apiCalls';
 
 const Container = styled.div`
   height: 60px;
@@ -88,7 +89,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const handleClick = () => {
-    logout();
+    userLogout(dispatch);
   }
 
   return (
